@@ -1,0 +1,27 @@
+name: dust
+version: 0.8.6
+summary: Like du but more intuitive
+description: |
+  Dust is meant to give you an instant overview of which directories are using disk space without requiring sort or head.
+confinement: classic
+base: core22
+
+architectures:
+  - build-on: [amd64]
+    build-for: [amd64]
+
+parts:
+  dust:
+    source: https://github.com/bootandy/dust.git
+    source-tag: v0.8.6
+    plugin: rust
+
+  rust-deps:
+    plugin: nil
+    build-packages:
+      - rustc
+      - cargo
+
+apps:
+  dust:
+    command: bin/dust
